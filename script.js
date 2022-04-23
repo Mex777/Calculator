@@ -64,6 +64,7 @@ equal.addEventListener('click', () => {
   } else {
     prevInput /= Number(input.textContent);
   }
+  prevInput = Number(prevInput.toFixed(3));
 
   input.textContent = prevInput;
   lastOperation = '+';
