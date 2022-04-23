@@ -43,6 +43,14 @@ product.addEventListener('click', () => {
   lastOperation = '*';
 });
 
+const division = document.createElement('button');
+division.textContent = '/'
+division.addEventListener('click', () => {
+  prevInput = Number(input.textContent);
+  input.textContent = 0;
+  lastOperation = '/';
+});
+
 const equal = document.createElement('button');
 equal.textContent = '=';
 equal.addEventListener('click', () => {
@@ -52,7 +60,10 @@ equal.addEventListener('click', () => {
     prevInput -= Number(input.textContent);
   } else if (lastOperation === '*') {
     prevInput *= Number(input.textContent);
+  } else {
+    prevInput /= Number(input.textContent);
   }
+
   input.textContent = prevInput;
   lastOperation = '+';
   prevInput = 0;
@@ -62,5 +73,6 @@ const row = document.createElement('div');
 row.appendChild(plus);
 row.appendChild(difference);
 row.appendChild(product);
+row.appendChild(division);
 row.appendChild(equal);
 calculator.appendChild(row);
