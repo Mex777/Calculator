@@ -1,5 +1,7 @@
 const calculator = document.getElementById('calculator');
 const input = document.getElementById('input');
+let prevInput = 0;
+
 for (let i = 0; i < 3; ++i) {
   const row = document.createElement('div');
   row.className = 'row';
@@ -15,3 +17,23 @@ for (let i = 0; i < 3; ++i) {
 
   calculator.appendChild(row);
 }
+
+const plus = document.createElement('button');
+plus.textContent = '+';
+plus.addEventListener('click', () => {
+  prevInput += Number(input.textContent);
+  input.textContent = 0;
+});
+
+const equal = document.createElement('button');
+equal.textContent = '=';
+equal.addEventListener('click', () => {
+  prevInput += Number(input.textContent);
+  input.textContent = prevInput;
+  prevInput = 0;
+});
+
+const row = document.createElement('div');
+row.appendChild(plus);
+row.appendChild(equal);
+calculator.appendChild(row);
