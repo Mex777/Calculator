@@ -6,6 +6,7 @@ let lastOperation = '+';
 for (let i = 0; i < 3; ++i) {
   const row = document.createElement('div');
   row.className = 'row';
+  row.id = 'row' + i;
   for (let j = 0; j < 3; ++j) {
     const button = document.createElement('button');
     button.id = i * 3 + j + 1;
@@ -44,7 +45,7 @@ product.addEventListener('click', () => {
 });
 
 const division = document.createElement('button');
-division.textContent = '/'
+division.textContent = '/';
 division.addEventListener('click', () => {
   prevInput = Number(input.textContent);
   input.textContent = 0;
@@ -69,10 +70,26 @@ equal.addEventListener('click', () => {
   prevInput = 0;
 });
 
+const clear = document.createElement('button');
+clear.textContent = 'C';
+clear.addEventListener('click', () => {
+  prevInput = 0;
+  input.textContent = 0;
+});
+
+document.getElementById('row0').appendChild(plus);
+document.getElementById('row1').appendChild(difference);
+document.getElementById('row2').appendChild(product);
+
+const zero = document.createElement('button');
+zero.textContent = 0;
+zero.addEventListener('click', () => {
+  input.textContent = Number(input.textContent) * 10;
+});
+
 const row = document.createElement('div');
-row.appendChild(plus);
-row.appendChild(difference);
-row.appendChild(product);
-row.appendChild(division);
+row.appendChild(clear);
+row.appendChild(zero);
 row.appendChild(equal);
+row.appendChild(division);
 calculator.appendChild(row);
