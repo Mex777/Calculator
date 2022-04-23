@@ -1,6 +1,7 @@
 const calculator = document.getElementById('calculator');
 const input = document.getElementById('input');
 let prevInput = 0;
+let lastOperation = '+';
 
 for (let i = 0; i < 3; ++i) {
   const row = document.createElement('div');
@@ -23,12 +24,25 @@ plus.textContent = '+';
 plus.addEventListener('click', () => {
   prevInput += Number(input.textContent);
   input.textContent = 0;
+  lastOperation = '+';
+});
+
+const difference = document.createElement('button');
+difference.textContent = '-';
+difference.addEventListener('click', () => {
+  prevInput += Number(input.textContent);
+  input.textContent = 0;
+  lastOperation = '-';
 });
 
 const equal = document.createElement('button');
 equal.textContent = '=';
 equal.addEventListener('click', () => {
-  prevInput += Number(input.textContent);
+  if (lastOperation === '+') {
+    prevInput += Number(input.textContent);
+  } else if (lastOperation === '-') {
+    prevInput -= Number(input.textContent);
+  }
   input.textContent = prevInput;
   prevInput = 0;
 });
@@ -36,4 +50,5 @@ equal.addEventListener('click', () => {
 const row = document.createElement('div');
 row.appendChild(plus);
 row.appendChild(equal);
+row.appendChild(difference);
 calculator.appendChild(row);
