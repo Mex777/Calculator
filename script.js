@@ -22,7 +22,7 @@ for (let i = 0; i < 3; ++i) {
 const plus = document.createElement('button');
 plus.textContent = '+';
 plus.addEventListener('click', () => {
-  prevInput += Number(input.textContent);
+  prevInput = Number(input.textContent);
   input.textContent = 0;
   lastOperation = '+';
 });
@@ -30,9 +30,17 @@ plus.addEventListener('click', () => {
 const difference = document.createElement('button');
 difference.textContent = '-';
 difference.addEventListener('click', () => {
-  prevInput += Number(input.textContent);
+  prevInput = Number(input.textContent);
   input.textContent = 0;
   lastOperation = '-';
+});
+
+const product = document.createElement('button');
+product.textContent = '*';
+product.addEventListener('click', () => {
+  prevInput = Number(input.textContent);
+  input.textContent = 0;
+  lastOperation = '*';
 });
 
 const equal = document.createElement('button');
@@ -42,13 +50,17 @@ equal.addEventListener('click', () => {
     prevInput += Number(input.textContent);
   } else if (lastOperation === '-') {
     prevInput -= Number(input.textContent);
+  } else if (lastOperation === '*') {
+    prevInput *= Number(input.textContent);
   }
   input.textContent = prevInput;
+  lastOperation = '+';
   prevInput = 0;
 });
 
 const row = document.createElement('div');
 row.appendChild(plus);
-row.appendChild(equal);
 row.appendChild(difference);
+row.appendChild(product);
+row.appendChild(equal);
 calculator.appendChild(row);
